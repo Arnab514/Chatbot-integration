@@ -42,7 +42,6 @@ BeyondChats is a modern web application that streamlines the process of setting 
 1. Clone the repository:
 ```bash
 git clone https://github.com/Arnab514/Chatbot-integration
-cd beyondchats
 ```
 
 2. Install dependencies:
