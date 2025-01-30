@@ -118,7 +118,7 @@ export const EmailVerification = ({ onNext }: EmailVerificationProps) => {
   };
 
   return (
-    <Card>
+    <Card className="max-w-md mx-auto">
       <div className="p-6 sm:p-8">
         <h2 className="text-2xl font-semibold mb-2">
           Verify your email
