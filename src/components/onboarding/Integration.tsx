@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Card } from "../shared/Card";
 import { Button } from "../shared/Button";
-import { Copy, Mail, ExternalLink, MessageSquare, X } from "lucide-react";
+import { Copy, Mail, ExternalLink, MessageSquare, X, MessagesSquare } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 
@@ -12,6 +12,7 @@ interface IntegrationProps {
 export const Integration = ({ onNext }: IntegrationProps) => {
   const [option, setOption] = useState<"code" | "email" | null>(null);
   const [showPreview, setShowPreview] = useState(false);
+  const [showChat, setShowChat] = useState(true);
   const { toast } = useToast();
 
   const handleCopy = () => {
@@ -24,10 +25,15 @@ export const Integration = ({ onNext }: IntegrationProps) => {
 
   const handleTestChatbot = () => {
     setShowPreview(true);
+    setShowChat(true);
   };
 
   const handleCloseChatbot = () => {
     setShowPreview(false);
+  };
+
+  const toggleChat = () => {
+    setShowChat(prev => !prev);
   };
 
   return (
@@ -176,27 +182,46 @@ export const Integration = ({ onNext }: IntegrationProps) => {
               </p>
             </div>
           </div>
-          <div className="fixed bottom-4 right-4 bg-white rounded-lg shadow-lg p-4 w-80">
-            <div className="flex items-center justify-between mb-2">
-              <span className="font-medium">Chat with us</span>
-              <button className="text-gray-500 hover:text-gray-700">
-                <X className="w-4 h-4" />
-              </button>
-            </div>
-            <div className="h-80 bg-gray-50 rounded-lg mb-2 p-4">
-              <div className="bg-primary/10 rounded-lg p-2 mb-2 max-w-[80%]">
-                Hello! How can I help you today?
+
+          {!showChat && (
+            <button
+              onClick={toggleChat}
+              className="fixed bottom-4 right-4 bg-primary text-white p-4 rounded-full shadow-lg hover:bg-primary/90 transition-all"
+            >
+              <MessagesSquare className="w-6 h-6" />
+            </button>
+          )}
+
+          {showChat && (
+            <div className="fixed bottom-4 right-4 bg-white rounded-lg shadow-lg w-80 max-w-[calc(100vw-2rem)] mx-4">
+              <div className="flex items-center justify-between p-4 border-b">
+                <span className="font-medium">Chat with us</span>
+                <button 
+                  onClick={toggleChat}
+                  className="text-gray-500 hover:text-gray-700"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+              <div className="h-80 bg-gray-50 p-4 overflow-y-auto">
+                <div className="bg-primary/10 rounded-lg p-2 mb-2 max-w-[80%]">
+                  Hello! How can I help you today?
+                </div>
+              </div>
+              <div className="p-4 border-t">
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    placeholder="Type your message..."
+                    className="flex-1 min-w-0 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20"
+                  />
+                  <Button className="shrink-0">
+                    Send
+                  </Button>
+                </div>
               </div>
             </div>
-            <div className="flex gap-2">
-              <input
-                type="text"
-                placeholder="Type your message..."
-                className="flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20"
-              />
-              <Button>Send</Button>
-            </div>
-          </div>
+          )}
         </div>
       )}
     </>
