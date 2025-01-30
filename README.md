@@ -2,6 +2,7 @@
 
 BeyondChats is a modern web application that streamlines the process of setting up and integrating AI-powered chatbots for businesses. This frontend project implements a user-friendly workflow for chatbot configuration and deployment.
 
+## 🚀 Live Code : https://chatbot-integration-arnab.vercel.app/
 ## 🚀 Features
 
 ### User Registration & Authentication
@@ -40,7 +41,7 @@ BeyondChats is a modern web application that streamlines the process of setting 
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/beyondchats.git
+git clone https://github.com/Arnab514/Chatbot-integration
 cd beyondchats
 ```
 
